@@ -8,12 +8,13 @@
  * and stores them into the 'dest'.
  *
  * Reading stops after an EOF or a newline. If a newline is
- * read, it is stored into the buffer. A terminating null byte
+ * read, it is stored into the 'dest'. A terminating null byte
  * ('\0') is stored after the last character in the 'dest'.
  *
- * Returns the number of characters read into the 'dest'.
+ * FAIL:    returns EOF if end of file is reached.
+ * SUCCESS: returns number of characters read into 'dest' (including '\n').
  */
-size_t get_line(char* dest, size_t size);
+int get_line(char* dest, size_t size);
 
 
 /* Reads in a sequence of non-white space characters of

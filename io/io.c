@@ -10,22 +10,27 @@
 
 #define BUF_SIZE 256
 
-size_t get_line(char* buffer, size_t size)
-/* Returns 0 on EOF. */
+int get_line(char* dest, size_t size)
+/*
+ * FAIL:    returns EOF if end of file is reached.
+ * SUCCESS: returns number of characters read into 'dest' (including '\n').
+ */
 {
-        assert(buffer != NULL && "'get_line' - null pointer error.");
+        assert(dest != NULL && "'get_line' - null pointer error.");
 
         int c, i;
 
         i = 0;
+        // while not reached EOF, end of line, or overflowed 'dest'
         while ((c = getchar()) != EOF && c != '\n' && i < size - 1)
-                buffer[i++] = c;
+                dest[i++] = c;
 
         if (c == '\n')
-                buffer[i++] = c;
+                dest[i++] = c;
 
-        buffer[i] = '\0';
-        return i;
+        dest[i] = '\0';
+
+        return feof(stdin) ? EOF : i;
 }
 
 int get_string(char* dest, size_t size)
@@ -34,7 +39,7 @@ int get_string(char* dest, size_t size)
  * SUCCESS: returns length of read string.
  */
 {
-        assert(dest != NULL &&  "'get_word' - null pointer error.");
+        assert(dest != NULL &&  "'get_string' - null pointer error.");
 
         int i, j;
         char buffer[size];
