@@ -19,34 +19,30 @@ size_t get_line(char* dest, size_t size);
 /* Reads in a sequence of non-white space characters of
  * max size ('size' - 1) from stdin and stores it into the 'dest'.
  *
- * Skips all the leading whitespace characters. Stops reading
- * after meeting the first whispace character after the sequence,
- * EOF or an empty line. Terminating null byte ('\0') is stored after
- * the last character in the buffer.
+ * Terminating null byte ('\0') is stored after the last character in the buffer.
  *
- * Returns the length of the string.
+ * FAIL:    returns EOF if end of file is reached.
+ * SUCCESS: returns length of read string.
  */
-size_t get_string(char* dest, size_t size);
+int get_string(char* dest, size_t size);
 
 /*
  * Reads in a sequence of non-white space characters of
  * max size 255 from stdin and tries to convert it to a SIGNED INTEGER.
  *
- * Returns 1 on success, 0 on failure.
- *
- * Failure occurs if input is just EOF, empty line, non-numeric or
- * is not in valid INTEGER range.
+ * FAIL:    returns EOF if end of file is reached.
+ *          returns 0 if input is empty line, non-numeric or out of integer range.
+ * SUCCESS: returns 1.
  */
 int get_int(int* dest);
 
 /*
  * Reads in a sequence of non-white space characters of
  * max size 255 from stdin and tries to convert it to a FLOAT.
- *
- * Returns 1 on success, 0 on failure.
- *
- * Failure occurs if input is just EOF, empty line, non-numeric or
- * is not in valid FLOAT range.
+
+ * FAIL:    returns EOF if end of file is reached.
+ *          returns 0 if input is empty line, non-numeric or out of float range.
+ * SUCCESS: returns 1.
  */
 int get_float(float* dest);
 

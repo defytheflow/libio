@@ -28,7 +28,11 @@ size_t get_line(char* buffer, size_t size)
         return i;
 }
 
-size_t get_string(char* dest, size_t size)
+int get_string(char* dest, size_t size)
+/*
+ * FAIL:    returns EOF if end of file is reached.
+ * SUCCESS: returns length of read string.
+ */
 {
         assert(dest != NULL &&  "'get_word' - null pointer error.");
 
@@ -37,7 +41,7 @@ size_t get_string(char* dest, size_t size)
 
         if (!fgets(buffer, size, stdin))
                 // EOF or input failed
-                return 0;
+                return feof(stdin) ? EOF : 0;
 
         // skip whitespace
         for (i = 0; buffer[i] != '\0' && isspace(buffer[i]); ++i);
@@ -51,17 +55,22 @@ size_t get_string(char* dest, size_t size)
 }
 
 int get_int(int* dest)
-/* Returns 0 on EOF, empty line, non-integer input, out of range. */
+/*
+ * FAIL:    returns EOF if end of file is reached.
+ *          returns 0 if input is empty line, non-numeric or out of integer range.
+ * SUCCESS: returns 1.
+ */
 {
         assert(dest != NULL && "'get_int' - null pointer error.");
 
+        int len;  // get_string return value
         long l;
         char* endptr;  // address of first invalid character read by 'strtol'
         char buffer[BUF_SIZE];
 
-        if (!get_string(buffer, BUF_SIZE))
-                // we got only an EOF or an empty line
-                return 0;
+        if ((len = get_string(buffer, BUF_SIZE)) == EOF || len == 0)
+                // we got an EOF or an empty line
+                return (len == EOF) ? EOF : 0;
 
         l = strtol(buffer, &endptr, 10);
 
@@ -87,17 +96,22 @@ int get_int(int* dest)
 }
 
 int get_float(float* dest)
-/* Returns 0 on EOF, empty line, non-float input, out of range. */
+/*
+ * FAIL:    returns EOF if end of file is reached.
+ *          returns 0 if input is empty line, non-numeric or out of float range.
+ * SUCCESS: returns 1.
+ */
 {
         assert(dest != NULL && "'get_float' - null pointer error.");
 
+        int len;  // get_string return value
         double d;
         char* endptr; // address of first invalif character read by 'strtol'
         char buffer[BUF_SIZE];
 
-        if (!get_string(buffer, BUF_SIZE))
-                // we got only an EOF or an empty line
-                return 0;
+        if ((len = get_string(buffer, BUF_SIZE)) == EOF || len == 0)
+                // we got an EOF or an empty line
+                return (len == EOF) ? EOF : 0;
 
         d = strtod(buffer, &endptr);
 
