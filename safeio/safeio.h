@@ -1,5 +1,5 @@
-#ifndef DEFY_THE_FLOW_IO_H
-#define DEFY_THE_FLOW_IO_H
+#ifndef SAFE_IO_H
+#define SAFE_IO_H
 
 #include <stddef.h>
 
@@ -47,4 +47,4 @@ int get_int(int* dest);
  */
 int get_float(float* dest);
 
-#endif  // DEFY_THE_FLOW_IO_H
+#endif  // SAFE_IO_H
