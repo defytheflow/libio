@@ -12,7 +12,7 @@
  * ('\0') is stored after the last character in the 'dest'.
  *
  * RETURN VALUE:
- *     FAILURE - EOF.
+ *     FAILURE - 0 if end of file was reached.
  *     SUCCESS - number of characters read into 'dest' (including '\n').
  */
 int get_line(char* dest, size_t size);
@@ -25,7 +25,7 @@ int get_line(char* dest, size_t size);
  * in the 'dest'.
  *
  * RETURN VALUE:
- *     FAILURE - EOF.
+ *     FAILURE - 0 if end of file was reached.
  *     SUCCESS - number of non-whitespace characters read into 'dest'.
  */
 int get_string(char* dest, size_t size);

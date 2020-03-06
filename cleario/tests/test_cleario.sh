@@ -1,5 +1,7 @@
 #!/bin/bash
-# test suites for cleario library
+
+# Test suites for 'cleario' library.
+# Last tested: March 6, 2020.
 
 test_get_int()
 {
@@ -60,4 +62,22 @@ test_get_float()
     # Check that 'get_float' fails if input does not fit in a FLOAT.
     assertFalse echo "$lf"    | ./test_get_float > /dev/null
     assertFalse echo "-$lf"   | ./test_get_float > /dev/null
+}
+
+test_get_string()
+{
+    local s="galaxy"
+
+    # Check that 'get_string' skips white space characters and
+    # successfully retrieves the string.
+    assertTrue echo "  $s"   | ./test_get_string > /dev/null
+    assertTrue echo "$s  "   | ./test_get_string > /dev/null
+    assertTrue echo "\t$s"   | ./test_get_string > /dev/null
+    assertTrue echo "$s\t"   | ./test_get_string > /dev/null
+    assertTrue echo "  \t$s" | ./test_get_string > /dev/null
+    assertTrue echo "$s\t  " | ./test_get_string > /dev/null
+    assertTrue echo "\n$s\n" | ./test_get_string > /dev/null
+
+    # Check that 'get_string' fails if reaches EOF.
+    assertFalse echo ""      | ./test_get_string > /dev/null
 }
