@@ -24,7 +24,7 @@ int get_line(const char* prompt, char* dest, size_t size)
                 printf("%s", prompt);
 
         // while not reached EOF, end of line, or overflowed 'dest'.
-        while ((c = getchar()) != EOF && c != '\n' && len < (signed) size - 1)
+        while (len < (signed) size - 1 && (c = getchar()) != '\n' && c != EOF)
                 dest[len++] = c;
 
         if (c == '\n')
@@ -49,7 +49,7 @@ int get_string(const char* prompt, char* dest, size_t size)
 
         // Try to read a sequence of non-whitespace characters into 'dest'
         // while not reached EOF or overflowed 'dest'.
-        for (len = 0; (c = getchar()) != EOF && len < (signed) size - 1;) {
+        for (len = 0; len < (signed) size - 1 && (c = getchar()) != EOF;) {
 
                 if (isspace(c) && len == 0)
                         continue;
