@@ -9,7 +9,7 @@
 
 #define TEMP_BUF_SIZE 256
 
-int get_line(char* dest, size_t size)
+int get_line(const char* prompt, char* dest, size_t size)
 /*
  * RETURN VALUE:
  *     FAILURE - 0 if end of file was reached.
@@ -19,6 +19,10 @@ int get_line(char* dest, size_t size)
         int c, len;
 
         len = 0;
+
+        if (prompt != NULL)
+                printf("%s", prompt);
+
         // while not reached EOF, end of line, or overflowed 'dest'.
         while ((c = getchar()) != EOF && c != '\n' && len < (signed) size - 1)
                 dest[len++] = c;
@@ -31,7 +35,7 @@ int get_line(char* dest, size_t size)
         return len;
 }
 
-int get_string(char* dest, size_t size)
+int get_string(const char* prompt, char* dest, size_t size)
 /*
  * RETURN VALUE:
  *     FAILURE - 0 if end of file was reached.
@@ -39,6 +43,9 @@ int get_string(char* dest, size_t size)
  */
 {
         int len, c;
+
+        if (prompt != NULL)
+                printf("%s", prompt);
 
         // Try to read a sequence of non-whitespace characters into 'dest'
         // while not reached EOF or overflowed 'dest'.
@@ -58,7 +65,7 @@ int get_string(char* dest, size_t size)
         return len;
 }
 
-int get_int(int* dest)
+int get_int(const char* prompt, int* dest)
 /*
  * RETURN VALUE:
  *     FAILURE - EOF if end of file was reached,
@@ -70,7 +77,7 @@ int get_int(int* dest)
         char* endptr;  // address of first invalid character read by 'strtol'.
         char temp_buffer[TEMP_BUF_SIZE];
 
-        if (get_string(temp_buffer, TEMP_BUF_SIZE) == 0)
+        if (get_string(prompt, temp_buffer, TEMP_BUF_SIZE) == 0)
                 return EOF;
 
         l = strtol(temp_buffer, &endptr, 10);
@@ -96,7 +103,7 @@ int get_int(int* dest)
         return 1;
 }
 
-int get_float(float* dest)
+int get_float(const char* prompt, float* dest)
 /*
  * RETURN VALUE:
  *     FAILURE - EOF if end of file was reached,
@@ -108,7 +115,7 @@ int get_float(float* dest)
         char* endptr;  // address of first invalid character read by 'strtod'.
         char temp_buffer[TEMP_BUF_SIZE];
 
-        if (get_string(temp_buffer, TEMP_BUF_SIZE) == 0)
+        if (get_string(prompt, temp_buffer, TEMP_BUF_SIZE) == 0)
                 return EOF;
 
         d = strtod(temp_buffer, &endptr);

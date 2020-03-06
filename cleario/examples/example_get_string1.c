@@ -12,7 +12,7 @@ int main(void)
 
         printf("Enter %d words.\n", NUM_WORDS);
         for (i = 0; i < NUM_WORDS; ++i) {
-                if ((len = get_string(words[i], MAX_WORD)) == 0)
+                if ((len = get_string(NULL, words[i], MAX_WORD)) == 0)
                         break;
         }
 

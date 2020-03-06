@@ -15,7 +15,7 @@
  *     FAILURE - 0 if end of file was reached.
  *     SUCCESS - number of characters read into 'dest' (including '\n').
  */
-int get_line(char* dest, size_t size);
+int get_line(const char* prompt, char* dest, size_t size);
 
 /*
  * Reads in a sequence of non-white space characters of
@@ -28,7 +28,7 @@ int get_line(char* dest, size_t size);
  *     FAILURE - 0 if end of file was reached.
  *     SUCCESS - number of non-whitespace characters read into 'dest'.
  */
-int get_string(char* dest, size_t size);
+int get_string(const char* prompt, char* dest, size_t size);
 
 /*
  * Reads in a sequence of non-white space characters of max size 255
@@ -39,7 +39,7 @@ int get_string(char* dest, size_t size);
  *               0   if input is non-numeric or not in SIGNED INTEGER range.
  *     SUCCESS - 1.
  */
-int get_int(int* dest);
+int get_int(const char* prompt, int* dest);
 
 /*
  * Reads in a sequence of non-white space characters of max size 255
@@ -50,6 +50,6 @@ int get_int(int* dest);
  *               0   if input is non-numeric or not in FLOAT range.
  *     SUCCESS - 1.
  */
-int get_float(float* dest);
+int get_float(const char* prompt, float* dest);
 
 #endif  // CLEAR_IO_H
