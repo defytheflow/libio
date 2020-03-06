@@ -1,4 +1,4 @@
-#include "safeio.h"
+#include "cleario.h"
 
 #include <errno.h>   // ERANGE
 #include <float.h>

@@ -1,5 +1,5 @@
 #!/bin/bash
-# test suites for safeio library
+# test suites for cleario library
 
 test_get_int()
 {

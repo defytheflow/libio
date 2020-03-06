@@ -1,5 +1,5 @@
-#ifndef SAFE_IO_H
-#define SAFE_IO_H
+#ifndef CLEAR_IO_H
+#define CLEAR_IO_H
 
 #include <stddef.h>
 
@@ -16,7 +16,6 @@
  *     SUCCESS - number of characters read into 'dest' (including '\n').
  */
 int get_line(char* dest, size_t size);
-
 
 /*
  * Reads in a sequence of non-white space characters of
@@ -53,4 +52,4 @@ int get_int(int* dest);
  */
 int get_float(float* dest);
 
-#endif  // SAFE_IO_H
+#endif  // CLEAR_IO_H
