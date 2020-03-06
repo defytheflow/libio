@@ -21,9 +21,5 @@ test_cleario: test_get_string test_get_int test_get_float test_cleario.sh
 test:
 	@make --no-print-directory test_cleario
 
-clean_cleario:
-	clean -f
-
 clean:
-	@make -s clean_cleario
-
+	rm *.o test_get_string test_get_int test_get_float
