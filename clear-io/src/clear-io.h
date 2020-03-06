@@ -15,7 +15,7 @@
  *     FAILURE - 0 if end of file was reached.
  *     SUCCESS - number of characters read into 'dest' (including '\n').
  */
-int get_line(const char* prompt, char* dest, size_t size);
+size_t get_line(const char* prompt, char* dest, size_t size);
 
 /*
  * Reads in a sequence of non-white space characters of
@@ -28,7 +28,7 @@ int get_line(const char* prompt, char* dest, size_t size);
  *     FAILURE - 0 if end of file was reached.
  *     SUCCESS - number of non-whitespace characters read into 'dest'.
  */
-int get_string(const char* prompt, char* dest, size_t size);
+size_t get_string(const char* prompt, char* dest, size_t size);
 
 /*
  * Reads in a sequence of non-white space characters of max size 255

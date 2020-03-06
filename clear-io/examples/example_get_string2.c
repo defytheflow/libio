@@ -1,6 +1,6 @@
-#include <cleario.h>
-
 #include <stdio.h>
+
+#include <clear-io.h>
 
 #define NUM_WORDS 5
 #define MAX_WORD  256
@@ -12,7 +12,7 @@ int main(void)
 
         printf("Enter %d words.\n", NUM_WORDS);
         for (i = 0; i < NUM_WORDS; ++i) {
-                if ((len = get_string(NULL, words[i], MAX_WORD)) == 0)
+                if ((len = get_string("word: ", words[i], MAX_WORD)) == 0)
                         break;
         }
 
