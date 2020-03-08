@@ -23,5 +23,6 @@ test_clear_io: test_get_string test_get_int test_get_float test_clear_io.sh
 test:
 	@make --no-print-directory test_clear_io
 
+.PHONY: clean
 clean:
 	rm *.o test_get_string test_get_int test_get_float
