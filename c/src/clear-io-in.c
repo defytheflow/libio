@@ -1,12 +1,12 @@
-#include "clear-io.h"
+#include <clear-io-in.h>
 
+#include <ctype.h>   // isspace()
 #include <errno.h>   // ERANGE
 #include <float.h>   // FLT_MAX
-#include <ctype.h>   // isspace()
+#include <limits.h>  // INT_MAX, INT_MIN
 #include <stdio.h>   // getchar(), printf()
 #include <stddef.h>  // size_t, NULL
 #include <stdlib.h>  // strtol(), strtod()
-#include <limits.h>  // INT_MAX, INT_MIN
 
 #define TEMP_BUFFER_SIZE 256
 

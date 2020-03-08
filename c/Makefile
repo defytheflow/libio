@@ -1,14 +1,19 @@
 CC = gcc
-CFLAGS  = -fPIC -W -Wall -Wextra
-LDFLAGS = -shared
+CFLAGS   = -fPIC -W -Wall -Wextra
+INCFLAGS = -I $(INC_DIR)
+LDFLAGS  = -shared
 
 SRC_DIR  = src
 INC_DIR  = include
 TEST_DIR = tests
 
-INC   = $(INC_DIR)/clear-io.h
-SRCS  = $(SRC_DIR)/clear-io.c
-OBJS  = clear-io.o
+INCS  = $(INC_DIR)/clear-io.h $(INC_DIR)/clear-io-in.h \
+        $(INC_DIR)/clear-io-out.h $(INC_DIR)/clear-io-err.h
+
+SRCS  = $(SRC_DIR)/clear-io-in.c $(SRC_DIR)/clear-io-out.c \
+        $(SRC_DIR)/clear-io-err.c
+
+OBJS  = clear-io-in.o clear-io-out.o clear-io-err.o
 
 TARGET_LIB = libclear-io.so
 
@@ -22,18 +27,18 @@ TARGET_TEST = test_clear_io
 
 all: install
 
-$(OBJS): $(SRCS) $(INC)
-	$(CC) -c $(CFLAGS) $(SRCS)
+$(OBJS): $(SRCS) $(INCS)
+	$(CC) -c $(CFLAGS) $(INCFLAGS) $(SRCS)
 
 $(TARGET_LIB): $(OBJS)
 	$(CC) $(LDFLAGS) $^ -o $@
 
 $(TARGET_TEST): $(TEST_SRCS) $(OBJS)
-	$(CC) $(CFLAGS) -I $(INC_DIR) $^ -o $@
+	$(CC) $(CFLAGS) $(INCFLAGS) $^ -o $@
 
-install: $(TARGET_LIB) $(INC)
+install: $(TARGET_LIB) $(INCS)
 	sudo mv $(TARGET_LIB) $(LIB_DEST_DIR)
-	sudo cp $(INC) $(INC_DEST_DIR)
+	sudo cp $(INCS) $(INC_DEST_DIR)
 	@make --no-print-directory clean
 
 test: $(TARGET_TEST)
