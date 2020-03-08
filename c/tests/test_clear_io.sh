@@ -12,27 +12,27 @@ test_get_int()
 
     # Check that 'get_int' skips white space characters and
     # successfully retrieves the integer.
-    assertTrue echo "  $i"   | ./test_get_int > /dev/null
-    assertTrue echo "$i  "   | ./test_get_int > /dev/null
-    assertTrue echo "\t$i"   | ./test_get_int > /dev/null
-    assertTrue echo "$i\t"   | ./test_get_int > /dev/null
-    assertTrue echo "  \t$i" | ./test_get_int > /dev/null
-    assertTrue echo "$i\t  " | ./test_get_int > /dev/null
-    assertTrue echo "\n$i\n" | ./test_get_int > /dev/null
+    assertTrue echo "  $i"   | ./test_clear_io get_int > /dev/null
+    assertTrue echo "$i  "   | ./test_clear_io get_int > /dev/null
+    assertTrue echo "\t$i"   | ./test_clear_io get_int > /dev/null
+    assertTrue echo "$i\t"   | ./test_clear_io get_int > /dev/null
+    assertTrue echo "  \t$i" | ./test_clear_io get_int > /dev/null
+    assertTrue echo "$i\t  " | ./test_clear_io get_int > /dev/null
+    assertTrue echo "\n$i\n" | ./test_clear_io get_int > /dev/null
 
     # Check that 'get_int' fails if reaches EOF.
-    assertFalse echo ""      | ./test_get_int > /dev/null
+    assertFalse echo ""      | ./test_clear_io get_int > /dev/null
 
     # Check that 'get_int' fails when receives non-numeric input.
-    assertFalse echo "$s"    | ./test_get_int > /dev/null
-    assertFalse echo "$i$s"  | ./test_get_int > /dev/null
-    assertFalse echo "$s$i"  | ./test_get_int > /dev/null
+    assertFalse echo "$s"    | ./test_clear_io get_int > /dev/null
+    assertFalse echo "$i$s"  | ./test_clear_io get_int > /dev/null
+    assertFalse echo "$s$i"  | ./test_clear_io get_int > /dev/null
 
     # Check that 'get_int' fails if input does not fit in a SIGNED INTEGER.
-    assertFalse echo "$l"    | ./test_get_int > /dev/null
-    assertFalse echo "-$l"   | ./test_get_int > /dev/null
-    assertFalse echo "$ll"   | ./test_get_int > /dev/null
-    assertFalse echo "-$ll"  | ./test_get_int > /dev/null
+    assertFalse echo "$l"    | ./test_clear_io get_int > /dev/null
+    assertFalse echo "-$l"   | ./test_clear_io get_int > /dev/null
+    assertFalse echo "$ll"   | ./test_clear_io get_int > /dev/null
+    assertFalse echo "-$ll"  | ./test_clear_io get_int > /dev/null
 }
 
 test_get_float()
@@ -43,25 +43,25 @@ test_get_float()
 
     # Check that 'get_float' skips white space characters and
     # successfully retrieves the integer.
-    assertTrue echo "  $f"   | ./test_get_float > /dev/null
-    assertTrue echo "$f  "   | ./test_get_float > /dev/null
-    assertTrue echo "\t$f"   | ./test_get_float > /dev/null
-    assertTrue echo "$f\t"   | ./test_get_float > /dev/null
-    assertTrue echo "  \t$f" | ./test_get_float > /dev/null
-    assertTrue echo "$f\t  " | ./test_get_float > /dev/null
-    assertTrue echo "\n$f\n" | ./test_get_float > /dev/null
+    assertTrue echo "  $f"   | ./test_clear_io get_float > /dev/null
+    assertTrue echo "$f  "   | ./test_clear_io get_float > /dev/null
+    assertTrue echo "\t$f"   | ./test_clear_io get_float > /dev/null
+    assertTrue echo "$f\t"   | ./test_clear_io get_float > /dev/null
+    assertTrue echo "  \t$f" | ./test_clear_io get_float > /dev/null
+    assertTrue echo "$f\t  " | ./test_clear_io get_float > /dev/null
+    assertTrue echo "\n$f\n" | ./test_clear_io get_float > /dev/null
 
     # Check that 'get_float' fails if reaches EOF.
-    assertFalse echo ""      | ./test_get_float > /dev/null
+    assertFalse echo ""      | ./test_clear_io get_float > /dev/null
 
     # Check that 'get_float' fails when receives non-numeric input.
-    assertFalse echo "$s"    | ./test_get_float > /dev/null
-    assertFalse echo "$f$s"  | ./test_get_float > /dev/null
-    assertFalse echo "$s$f"  | ./test_get_float > /dev/null
+    assertFalse echo "$s"    | ./test_clear_io get_float > /dev/null
+    assertFalse echo "$f$s"  | ./test_clear_io get_float > /dev/null
+    assertFalse echo "$s$f"  | ./test_clear_io get_float > /dev/null
 
     # Check that 'get_float' fails if input does not fit in a FLOAT.
-    assertFalse echo "$lf"    | ./test_get_float > /dev/null
-    assertFalse echo "-$lf"   | ./test_get_float > /dev/null
+    assertFalse echo "$lf"    | ./test_clear_io get_float > /dev/null
+    assertFalse echo "-$lf"   | ./test_clear_io get_float > /dev/null
 }
 
 test_get_string()
@@ -70,14 +70,14 @@ test_get_string()
 
     # Check that 'get_string' skips white space characters and
     # successfully retrieves the string.
-    assertTrue echo "  $s"   | ./test_get_string > /dev/null
-    assertTrue echo "$s  "   | ./test_get_string > /dev/null
-    assertTrue echo "\t$s"   | ./test_get_string > /dev/null
-    assertTrue echo "$s\t"   | ./test_get_string > /dev/null
-    assertTrue echo "  \t$s" | ./test_get_string > /dev/null
-    assertTrue echo "$s\t  " | ./test_get_string > /dev/null
-    assertTrue echo "\n$s\n" | ./test_get_string > /dev/null
+    assertTrue echo "  $s"   | ./test_clear_io get_string > /dev/null
+    assertTrue echo "$s  "   | ./test_clear_io get_string > /dev/null
+    assertTrue echo "\t$s"   | ./test_clear_io get_string > /dev/null
+    assertTrue echo "$s\t"   | ./test_clear_io get_string > /dev/null
+    assertTrue echo "  \t$s" | ./test_clear_io get_string > /dev/null
+    assertTrue echo "$s\t  " | ./test_clear_io get_string > /dev/null
+    assertTrue echo "\n$s\n" | ./test_clear_io get_string > /dev/null
 
     # Check that 'get_string' fails if reaches EOF.
-    assertFalse echo ""      | ./test_get_string > /dev/null
+    assertFalse echo ""      | ./test_clear_io get_string > /dev/null
 }
