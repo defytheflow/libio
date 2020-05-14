@@ -1,5 +1,5 @@
-#ifndef CLEAR_IO_IN_H
-#define CLEAR_IO_IN_H
+#ifndef IO_IN_H
+#define IO_IN_H
 
 #include <stddef.h>
 
@@ -52,4 +52,4 @@ int get_int(const char* prompt, int* dest);
  */
 int get_float(const char* prompt, float* dest);
 
-#endif  // CLEAR_IO_IN_H
+#endif  /* IO_IN_H */

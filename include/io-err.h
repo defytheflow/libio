@@ -1,5 +1,5 @@
-#ifndef CLEAR_IO_ERR_H
-#define CLEAR_IO_ERR_H
+#ifndef IO_ERR_H
+#define IO_ERR_H
 
 /*
  * Prints "Error: " before format.
@@ -44,4 +44,4 @@ void smile_error(const char* format, ...);
  */
 void fatal_error(const char* format, ...);
 
-#endif  // CLEAR_IO_ERR_H
+#endif  /* IO_ERR_H */
